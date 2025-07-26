@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function navigateToProductPage(event) {
+      event.preventDefault(); // Prevent form submission
+
+      const name = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const city = document.getElementById('city').value;
+
+      if (!name || !email || !password || !city) {
+        alert("Please fill in all fields!");
+        return;
+      }
+
+      // Optional: You can store user info if needed
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userCity", city);
+
+      alert("Login successful! Redirecting to product page...");
+      window.location.href = "productpage.html"; // Redirect to product page
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Background with Overlay -->
+  <div class="min-h-screen bg-cover bg-center flex items-center justify-center relative" style="background-image: url('https://wallpaperaccess.com/full/1306615.jpg');">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+    <!-- Login Card -->
+    <div class="relative z-10 bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 w-full max-w-md text-center">
+      <h2 class="text-3xl font-bold text-green-800 mb-6">Login to Farmer Connect</h2>
+
+      <form class="space-y-4" onsubmit="navigateToProductPage(event)">
+        <input id="fullname" type="text" placeholder="Full Name" required class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+        <input id="email" type="email" placeholder="Email" required class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+        <input id="password" type="password" placeholder="Password" required class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+        <!-- City Dropdown -->
+        <div class="text-left">
+          <label for="city" class="block mb-1 text-sm font-medium text-gray-700">Select City</label>
+          <div class="relative">
+            <select id="city" name="city" required class="w-full appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+              <option value="" disabled selected>Select city</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="pune">Pune</option>
+              <option value="nagpur">Nagpur</option>
+              <option value="nashik">Nashik</option>
+              <option value="aurangabad">Aurangabad</option>
+              <option value="solapur">Solapur</option>
+              <option value="kolhapur">Kolhapur</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-600">
+              <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                <path d="M5.5 7l4.5 4.5L14.5 7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remember Me -->
+        <div class="flex items-center justify-between">
+          <label class="inline-flex items-center text-sm text-gray-700">
+            <input type="checkbox" class="form-checkbox text-green-600">
+            <span class="ml-2">Remember me</span>
+          </label>
+          <a href="#" class="text-sm text-green-600 hover:underline">Forgot password?</a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">Login & Explore Products</button>
+      </form>
+
+      <p class="mt-4 text-gray-700 text-sm">Don't have an account? <a href="#" class="text-green-600 font-semibold hover:underline">Sign up</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

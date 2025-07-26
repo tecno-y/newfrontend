@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .bg-thank {
+      background-image: url('http://cdn.wallpapersafari.com/65/13/pMu0iv.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="bg-thank min-h-screen flex items-center justify-center relative">
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+
+  <!-- Card -->
+  <div class="relative z-10 bg-white bg-opacity-90 backdrop-blur-md p-10 rounded-2xl shadow-2xl max-w-md text-center animate-fade-in">
+    <!-- Checkmark Icon -->
+    <div class="mx-auto mb-4">
+      <svg class="mx-auto h-16 w-16 text-green-600 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+
+    <h1 class="text-4xl font-bold text-green-700 mb-2">Thank You!</h1>
+    <p class="text-lg text-gray-700 mb-6">Your order has been placed successfully.</p>
+
+    <!-- Buttons -->
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="homepage.html" class="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-green-700 transition">🏠 Back to Home</a>
+      <a href="productpage.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition">🛍️ Continue Shopping</a>
+      <a href="homepage.html" class="bg-red-600 text-white px-6 py-2 rounded-lg shadow hover:bg-red-700 transition">🔒 Logout</a>
+    </div>
+  </div>
+
+  <!-- Simple animation (optional) -->
+  <script>
+    document.querySelector(".animate-fade-in")?.classList.add("transition", "duration-700", "ease-in", "opacity-100");
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+  <!-- Header -->
+  <header class="bg-green-700 text-white py-4 px-6">
+    <h1 class="text-2xl font-bold">Order Management</h1>
+  </header>
+
+  <!-- Main Section -->
+  <main class="p-6">
+    <!-- Search and Filter -->
+    <div class="flex flex-col md:flex-row md:justify-between mb-4 gap-4">
+      <input id="searchInput" type="text" placeholder="Search by customer or product..." class="px-4 py-2 rounded border w-full md:w-1/2">
+      <select id="statusFilter" class="px-4 py-2 rounded border w-full md:w-1/4">
+        <option value="">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Delivered">Delivered</option>
+      </select>
+    </div>
+
+    <!-- Order Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden" id="orderTable">
+        <thead class="bg-green-600 text-white">
+          <tr>
+            <th class="py-3 px-4 text-left">Order ID</th>
+            <th class="py-3 px-4 text-left">Customer</th>
+            <th class="py-3 px-4 text-left">Products</th>
+            <th class="py-3 px-4 text-left">Qty</th>
+            <th class="py-3 px-4 text-left">Total</th>
+            <th class="py-3 px-4 text-left">Date</th>
+            <th class="py-3 px-4 text-left">Status</th>
+            <th class="py-3 px-4 text-left">Action</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700" id="orderBody">
+          <!-- Dynamic Rows -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- View Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded shadow-lg w-11/12 md:w-1/2 relative">
+      <h2 class="text-xl font-bold mb-4">Order Details</h2>
+      <div id="modalContent" class="text-gray-800">
+        <!-- Order Details Inserted Here -->
+      </div>
+      <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-600 text-lg">&times;</button>
+    </div>
+  </div>
+
+  <script>
+    const orders = [
+      {
+        id: 'ORD127',
+        customer: 'Pradnya Mane',
+        products: 'Carrots, Beans',
+        qty: 6,
+        total: '₹300',
+        date: '2025-11-17',
+        status: 'Delivered'
+      },
+      {
+        id: 'ORD127',
+        customer: 'Adnya Mane',
+        products: 'Tomatos, Potatoes',
+        qty: 6,
+        total: '₹220',
+        date: '2025-07-17',
+        status: 'Pending'
+      },
+      {
+        id: 'ORD127',
+        customer: 'Manjiree huse',
+        products: 'Dragon Fruit, Beans',
+        qty: 6,
+        total: '₹100',
+        date: '2025-07-17',
+        status: 'delivered'
+      },
+      {
+        id: 'ORD123',
+        customer: 'sakshii gade',
+        products: 'Tomato, Onion',
+        qty: 5,
+        total: '₹250',
+        date: '2025-07-21',
+        status: 'Pending'
+      },
+      {
+        id: 'ORD124',
+        customer: 'priyanka gaikwad',
+        products: 'Potato, Carrot',
+        qty: 3,
+        total: '₹150',
+        date: '2025-07-20',
+        status: 'Delivered'
+      },
+      {
+        id: 'ORD125',
+        customer: 'aviraj patil',
+        products: 'Spinach, Cabbage',
+        qty: 4,
+        total: '₹200',
+        date: '2025-07-19',
+        status: 'Pending'
+      },
+      {
+        id: 'ORD126',
+        customer: 'naresh methe',
+        products: 'Broccoli, Cauliflower',
+        qty: 2,
+        total: '₹100',
+        date: '2025-07-18',
+        status: 'Delivered'
+      },
+      {
+        id: 'ORD127',
+        customer: 'rohit patil',
+        products: 'Carrots, Beans',
+        qty: 6,
+        total: '₹300',
+        date: '2025-06-17',
+        status: 'Pending'
+      },
+      {
+        id: 'ORD127',
+        customer: 'jayesh rathod',
+        products: 'Carrots, nested beans',
+        qty: 3,
+        total: '₹360',
+        date: '2025-02-17',
+        status: 'Pending'
+      },
+      {
+        id: 'ORD127',
+        customer: 'ajay sharma',
+        products: 'Carrots, Beans',
+        qty: 6,
+        total: '₹220',
+        date: '2025-07-17',
+        status: 'Pending'
+      },
+      
+    ];
+    function renderOrders(data) {
+      const tbody = document.getElementById('orderBody');
+      tbody.innerHTML = '';
+
+      data.forEach(order => {
+        const row = document.createElement('tr');
+        row.classList = "border-b hover:bg-gray-50";
+        columns = ['id', 'customer', 'products', 'qty', 'total', 'date', 'status'];
+        columns.forEach(col => {
+          const cell = document.createElement('td');
+          cell.classList = "py-3 px-4";
+          cell.textContent = order[col];
+          row.appendChild(cell);
+        });
+        row.innerHTML = `
+          <td class="py-3 px-4">${order.id}</td>
+          <td class="py-3 px-4">${order.customer}</td>
+          <td class="py-3 px-4">${order.products}</td>
+          <td class="py-3 px-4">${order.qty}</td>
+          <td class="py-3 px-4">${order.total}</td>
+          <td class="py-3 px-4">${order.date}</td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-1 rounded-full text-sm font-medium ${
+              order.status === 'Delivered' ? 'bg-green-200 text-green-800' : 'bg-yellow-200 text-yellow-800'
+            }">${order.status}</span>
+          </td>
+          <td class="py-3 px-4">
+            <button onclick="viewOrder('${order.id}')" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">View</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function viewOrder(orderId) {
+      const order = orders.find(o => o.id === orderId);
+      const content = `
+        <p><strong>Order ID:</strong> ${order.id}</p>
+        <p><strong>Customer:</strong> ${order.customer}</p>
+        <p><strong>Products:</strong> ${order.products}</p>
+        <p><strong>Quantity:</strong> ${order.qty}</p>
+        <p><strong>Total:</strong> ${order.total}</p>
+        <p><strong>Date:</strong> ${order.date}</p>
+        <p><strong>Status:</strong> ${order.status}</p>
+      `;
+      document.getElementById('modalContent').innerHTML = content;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    // Filtering
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const searchText = this.value.toLowerCase();
+      const filtered = orders.filter(o =>
+        o.customer.toLowerCase().includes(searchText) ||
+        o.products.toLowerCase().includes(searchText)
+      );
+      renderOrders(filtered);
+    });
+
+    document.getElementById('statusFilter').addEventListener('change', function () {
+      const status = this.value;
+      if (status === '') {
+        renderOrders(orders);
+      } else {
+        const filtered = orders.filter(o => o.status === status);
+        renderOrders(filtered);
+      }
+    });
+
+    // Initial load
+    renderOrders(orders);
+  </script>
+</body>
+</html>
+ 

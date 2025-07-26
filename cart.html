@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart - FarmaConnect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .toast {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-green-100 min-h-screen">
+
+  <!-- Toast -->
+  <div id="toast" class="fixed top-6 right-6 bg-red-600 text-white px-5 py-3 rounded-lg shadow-lg hidden toast z-50"></div>
+
+  <!-- Header -->
+  <header class="bg-green-700 text-white shadow-lg p-5 flex flex-wrap justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <img src="https://wallpapers.com/images/hd/country-summer-tall-grass-sunset-v57ebjrr27hqrskq.jpg" alt="Logo" class="w-10 h-10 rounded-full border-2 border-white">
+      <h1 class="text-2xl font-bold tracking-wide">FarmaConnect</h1>
+    </div>
+    <nav class="space-x-3 mt-3 sm:mt-0">
+      <a href="homepage.html" class="bg-white text-green-700 px-4 py-2 rounded hover:bg-green-100 transition">🏠 Home</a>
+      <a href="productpage.html" class="bg-white text-green-700 px-4 py-2 rounded hover:bg-green-100 transition">🛍️ Products</a>
+      <a href="orderpage.html" class="bg-white text-green-700 px-4 py-2 rounded hover:bg-green-100 transition">📦 Orders</a>
+      <a href="homepage.html" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">🔓 Logout</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-semibold text-green-800 mb-6">🛒 Your Cart</h2>
+
+    <div id="cart-items" class="space-y-6">
+      <!-- Items will render here -->
+    </div>
+
+    <!-- Summary -->
+    <div id="cart-summary" class="mt-10 hidden bg-white p-6 rounded-xl shadow space-y-4">
+      <div class="flex justify-between items-center">
+        <p class="text-xl font-semibold text-green-800">Total: ₹<span id="total">0</span></p>
+      </div>
+
+      <!-- Mock Payment Method -->
+      <div>
+        <label class="block font-semibold mb-2 text-gray-700">Select Payment Method</label>
+        <select id="payment-method" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-300">
+          <option value="cod">Cash on Delivery (COD)</option>
+          <option value="upi">UPI</option>
+          <option value="wallet">Wallet / Pay Later</option>
+        </select>
+      </div>
+
+      <button onclick="placeOrder()" class="w-full bg-green-700 text-white py-3 rounded hover:bg-green-800 transition shadow">Place Order</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-green-800 text-white text-center py-4 mt-10">
+    © 2025 AgroConnect • Empowering Farmers & Nature
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const cartContainer = document.getElementById('cart-items');
+    const totalElement = document.getElementById('total');
+    const summary = document.getElementById('cart-summary');
+    const toast = document.getElementById('toast');
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.remove('hidden');
+      toast.classList.add('toast');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+
+    function renderCart() {
+      cartContainer.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = `
+          <div class="text-center p-10 bg-white rounded-xl shadow text-gray-600">
+            <h3 class="text-xl font-semibold mb-2">Your cart is empty 😕</h3>
+            <p class="mb-4">Start adding farm-fresh items to your basket.</p>
+            <a href="productpage.html" class="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition">Shop Now</a>
+          </div>
+        `;
+        summary.classList.add('hidden');
+        showToast("No items in cart. Please add items.");
+        return;
+      }
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+
+        const itemHTML = `
+          <div class="flex items-center justify-between bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
+            <div class="flex items-center gap-4">
+              <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg border">
+              <div>
+                <h3 class="text-lg font-semibold text-green-800">${item.name}</h3>
+                <p class="text-gray-600">₹${item.price} × ${item.quantity}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <button onclick="changeQty(${item.id}, -1)" class="bg-gray-200 px-2 text-xl rounded hover:bg-gray-300">−</button>
+              <span class="font-medium w-6 text-center">${item.quantity}</span>
+              <button onclick="changeQty(${item.id}, 1)" class="bg-gray-200 px-2 text-xl rounded hover:bg-gray-300">+</button>
+              <button onclick="removeItem(${item.id})" class="text-red-500 hover:text-red-700 text-lg ml-3">🗑️</button>
+            </div>
+          </div>
+        `;
+        cartContainer.insertAdjacentHTML('beforeend', itemHTML);
+      });
+
+      totalElement.textContent = total;
+      summary.classList.remove('hidden');
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.quantity += delta;
+      if (item.quantity < 1) item.quantity = 1;
+      renderCart();
+    }
+
+    function removeItem(id) {
+      cart = cart.filter(i => i.id !== id);
+      renderCart();
+    }
+
+    function placeOrder() {
+      if (cart.length === 0) {
+        showToast("Your cart is empty. Add some products!");
+        return;
+      }
+
+      const payment = document.getElementById("payment-method").value;
+      if (!payment) {
+        showToast("Please select a payment method!");
+        return;
+      }
+
+      alert("✅ Order placed successfully with " + payment.toUpperCase());
+      cart = [];
+      localStorage.removeItem("cart");
+      renderCart();
+      // Redirect to thank you page
+      window.location.href = "thankyou.html";
+     
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

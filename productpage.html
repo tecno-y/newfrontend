@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FarmaConnect - Products</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 text-gray-800 bg-[url('https://wallpaperaccess.com/full/3586893.jpg')] bg-cover bg-no-repeat bg-fixed">
+
+
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 flex items-center justify-between px-10 py-4 bg-green-700 text-white shadow-md">
+   <nav class="bg-green-700 text-white p-4 flex items-center justify-between">
+  <div class="flex items-center space-x-3">
+    <img src="https://wallpapers.com/images/hd/country-summer-tall-grass-sunset-v57ebjrr27hqrskq.jpg" alt="Logo" class="h-10 w-10 rounded-full"/>
+    <h1 class="text-xl font-bold">FarmaConnect</h1>
+  </div>
+</nav>
+
+    <div class="flex gap-6">
+      <a href="homepage.html" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">Home</a>
+      <a href="cart.html" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">Cart</a>
+      <a href="loginpage.html" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">Register</a>
+      <a href="contact.html" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">Contact</a>
+      <a href="dashboard.html" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">Dashboard</a>
+    </div>
+  </nav>    
+     
+  <br>
+<br>
+<br>
+  <!-- Page Header -->
+  <header class="text-center py-10">
+    <h2 class="text-4xl font-bold text-green-400">Our Fresh Farm Products</h2>
+    <p class=" bold text-gray-900 mt-2">Great From Farm to Table</p>
+  </header>
+
+  <!-- Products Grid -->
+  <section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6 max-w-7xl mx-auto pb-16">
+    <!-- Template item -->
+    <script>
+      const products = [
+        // Vegetables
+        { name: "Fresh Broccoli", price: 40, image: "https://png.pngtree.com/thumb_back/fw800/background/20230518/pngtree-growing-your-own-brocolli-is-something-you-can-do-in-the-image_2534974.jpg" },
+        { name: "Organic Tomatoes", price: 30, image: "https://www.thespruce.com/thmb/8K-JLbxy5pBfl0KeUqMgCMQb27o=/3024x0/filters:no_upscale():max_bytes(150000):strip_icc()/growing-tomatoes-1403296-01-e87fc6443b55423890448cabb12efeba.jpg" },
+        { name: "Green Spinach", price: 25, image: "http://seed2plant.in/cdn/shop/products/spinachseeds.jpg?v=1603966262" },
+        { name: "Crisp Carrots", price: 20, image: "https://images.alphacoders.com/885/thumb-1920-885146.jpg" },
+        { name: "Red Bell Peppers", price: 35, image: "https://www.tasteofhome.com/wp-content/uploads/2019/09/bell-pepper_GettyImages-114474263.jpg?w=1200" },
+        { name: "Cucumbers", price: 15, image: "https://kiasumart.com/wp-content/uploads/2020/09/Cucumber-500g.jpeg" },
+        { name: "Cauliflower", price: 45, image: "https://gardenerspath.com/wp-content/uploads/2021/08/How-to-Grow-Cauliflower-FB-7.jpg" },
+        { name: "Potatoes", price: 10, image: "https://wallpapers.com/images/hd/potatoes-on-wooden-crate-pallet-svmirnxamuddafj4.jpg" },
+        { name: "Onions", price: 12, image: "https://www.thespruce.com/thmb/9sCTW3me2_CbsrHfgpusH2KwV68=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/growing-onions-1403447-01-38d480a2d16d4ea0b0dd174f42785e1d.jpg" },
+        { name: "Garlic", price: 18, image: "https://png.pngtree.com/background/20220720/original/pngtree-garlic-hd-photography-material-picture-image_1671631.jpg" },
+        { name: "Ginger", price: 22, image: "https://tse4.mm.bing.net/th/id/OIP.hHQk7JDra5cquIgt_Q1gHwHaEJ?pid=Api&P=0&h=180" },
+        { name: "Green Beans", price: 28, image: "https://wallpapers.com/images/hd/green-beans-newborn-pods-zcre6so92zqvshx6.jpg" },
+       
+
+        // Fruits
+        { name: "Red Apples", price: 60, image: "https://images3.alphacoders.com/883/883798.jpg" },
+        { name: "Bananas (Dozen)", price: 50, image: "https://static.vecteezy.com/system/resources/previews/007/669/083/non_2x/banana-tree-with-bunch-of-raw-green-bananas-and-banana-green-leaves-cultivated-banana-plantation-tropic-fruit-farm-herbal-medicine-for-treatment-diarrhea-and-gastritis-agriculture-organic-food-free-photo.jpg" },
+        { name: "Mangoes", price: 90, image: "https://wallpaperset.com/w/full/3/f/2/402062.jpg" },
+        { name: "Oranges", price: 70, image: "https://wallpapercave.com/wp/wp2293595.jpg" },
+        { name: "Grapes", price: 80, image: "https://images5.alphacoders.com/358/358749.jpg" },
+        { name: "Pineapples", price: 100, image: "http://3.bp.blogspot.com/-qmMuJP9Xi2I/T7R7aPp0CKI/AAAAAAAACjM/BzJCkP_0rhA/s1600/pineapple.theproduceblog.2.jpg" },
+        { name: "Strawberries", price: 120, image: "https://img.freepik.com/premium-photo/basket-strawberries-strawberry-farm_899870-10045.jpg" },
+        { name: "Watermelons", price: 150, image: "https://images6.alphacoders.com/385/385148.jpg" },
+        { name: "Papayas", price: 110, image: "https://ik.imagekit.io/386ptwjko5s/wp-content/uploads/2021/04/papaya-tree-supplier-india.jpg" },
+        { name: "Guavas", price: 90, image: "https://tse1.mm.bing.net/th/id/OIP.ZVreQ84ybIkSXEFn0FVpmwHaE8?pid=Api&rs=1&c=1&qlt=95&w=179&h=119" },
+        { name: "Lemons", price: 40, image: "https://images5.alphacoders.com/400/400430.jpg" },
+
+        // Grains
+        { name: "Basmati Rice (1kg)", price: 70, image: "https://wallpapercave.com/wp/wp11893104.jpg" },
+        { name: "Wheat Flour (1kg)", price: 45, image: "https://i.pinimg.com/originals/f9/52/0a/f9520a6d106b84ca8acaa64ef7bcfe99.jpg" },
+        { name: "Pulses (1kg)", price: 85, image: "https://draxe.com/wp-content/uploads/2020/09/shutterstock_1508339636-1.jpg" },
+        { name: "Oats (500g)", price: 55, image: "https://watermark.lovepik.com/photo/20211129/large/lovepik-fruit-oats-picture_501193399.jpg" },
+        { name: "Sorghum (1kg)", price: 75, image: "https://thumbs.dreamstime.com/b/sorghum-10528467.jpg" },
+
+        // Dairy
+        { name: "Pure Cow Milk (1L)", price: 55, image: "https://d3rk2wqy1pqubb.cloudfront.net/wp-content/uploads/2022/11/indian-desi-cow-milk.jpg" },
+        { name: "Homemade Butter (200g)", price: 80, image: "https://tse1.mm.bing.net/th/id/OIP.vxRefZt2a_N43DZdpybJRwHaE8?pid=Api&P=0&h=180" },
+        { name: "Curd (500ml)", price: 35, image: "https://www.healthifyme.com/blog/wp-content/uploads/2023/07/Curd.jpg" },
+        { name: "Paneer (250g)", price: 100, image: "https://wallpapercave.com/wp/wp4987420.jpg" },
+        { name: "Ghee (200ml)", price: 150, image: "https://wallpaperaccess.com/full/9471522.jpg" },
+        { name: "Ice Cream (500ml)", price: 200, image: "https://wallpapercave.com/wp/wp5084838.jpg" },
+        { name: "Condensed Milk (400g)", price: 90, image: "https://wallpaperaccess.com/full/1751326.jpg" },
+
+        // Flowers
+        { name: "Marigold Bunch", price: 30, image: "https://asset.bloomnation.com/c_pad,d_vendor:global:catalog:product:image.png,f_auto,fl_preserve_transparency,q_auto/v1666745758/vendor/6799/catalog/product/2/0/20221025050931_file_6358184b0b7f3_635818a7ad7ce.jpeg" },
+        { name: "Rose Bouquet", price: 90, image: "https://c4.wallpaperflare.com/wallpaper/905/778/394/pink-rose-flowers-beautiful-bouquet-wallpaper-preview.jpg" },
+        { name: "Lily Flower", price: 70, image: "https://images6.alphacoders.com/859/859834.jpg" },
+        { name: "Sunflower Bouquet", price: 80, image: "https://i.etsystatic.com/8972337/r/il/913a17/2821809065/il_1080xN.2821809065_12u7.jpg" },
+        { name: "Daisy Flowers", price: 50, image: "https://images7.alphacoders.com/697/thumb-1920-697157.jpg" },
+        { name: "Orchid Bouquet", price: 120, image: "https://tse3.mm.bing.net/th/id/OIP.OisIunpUwCYa2s5FM4b7ZgHaEo?pid=Api&P=0&h=180" },
+
+        // Organic Herbs
+        { name: "Tulsi Leaves", price: 20, image: "https://manthanhub.com/wp-content/uploads/2022/05/image-1.png" },
+        { name: "Mint Bundle", price: 15, image: "https://thumbs.dreamstime.com/z/fresh-mint-bundle-isolated-white-32457483.jpg" },
+        { name: "Amla Powder (100g)", price: 45, image: "https://tse1.mm.bing.net/th/id/OIP.JBH5d4Opmkrwo3a5N3sScAHaGJ?pid=Api&P=0&h=180" },
+        { name: "Ashwagandha Powder (100g)", price: 60, image: "https://fullmoonglobal.com/wp-content/uploads/2023/05/Ashwagandha-Powder_01.png" },
+        { name: "Moringa Leaves", price: 30, image: "https://tse1.mm.bing.net/th/id/OIP.FmRr1S34PPrOg6H459fk9QHaEK?pid=Api&P=0&h=180" },
+        { name: "Ginger Root", price: 25, image: "https://tse4.mm.bing.net/th/id/OIP.NqGLcDMHz-9OCojE04073gHaHa?pid=Api&P=0&h=180" }
+      ];
+
+    </script>
+
+    <div id="product-list" class="contents"></div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-4 right-4 bg-red-700 text-white px-4 py-2 rounded  hidden shadow-md transition-all duration-300">Item added to cart</div>
+
+  <script>
+    const productList = document.getElementById("product-list");
+    const toast = document.getElementById("toast");
+
+    function showToast() {
+      toast.classList.remove("hidden");
+      setTimeout(() => toast.classList.add("hidden"), 2000);
+    }
+
+    function addToCart(product) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existing = cart.find(item => item.name === product.name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      showToast();
+    }
+
+    // Render all products
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "bg-white rounded-lg shadow p-4 flex flex-col items-center text-center hover:shadow-lg transition";
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="h-32 w-32 object-cover rounded mb-4">
+        <h3 class="text-lg font-semibold">${product.name}</h3>
+        <p class="text-green-700 font-bold mb-2">₹${product.price}</p>
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Add to Cart</button>
+      `;
+
+      card.querySelector("button").addEventListener("click", () => addToCart(product));
+      productList.appendChild(card);
+    });
+  </script>
+<script>
+  function increaseQty(id) {
+    const qtyElement = document.getElementById(id);
+    let currentQty = parseInt(qtyElement.innerText);
+    qtyElement.innerText = currentQty + 1;
+  }
+
+  function decreaseQty(id) {
+    const qtyElement = document.getElementById(id);
+    let currentQty = parseInt(qtyElement.innerText);
+    if (currentQty > 1) {
+      qtyElement.innerText = currentQty - 1;
+    }
+  }
+</script>
+
+</body>
+</html>

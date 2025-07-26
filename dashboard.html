@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <body class="bg-gray-100 font-sans font-bold"></body>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-green-800 text-white p-6 hidden md:block">
+  <div class="flex items-center space-x-3 mb-10">
+    <img src="https://wallpapers.com/images/hd/country-summer-tall-grass-sunset-v57ebjrr27hqrskq.jpg" alt="Logo" class="h-10 w-10 rounded-full">
+    <h1 class="text-2xl font-bold">FarmaConnect</h1>
+  </div>
+        <ul class="space-y-6 text-lg">
+          <li>
+            <a href="dashboard.html" class="hover:text-green-300 transition">Dashboard </a>
+          </li>
+          <li>
+            <a href="productpage.html" class="hover:text-green-300 transition">Products</a>
+          </li>
+          <li>
+            <a href="cart.html" class="hover:text-green-300 transition">Cart</a>
+          </li>
+          <li>
+            <a href="contact.html" class="hover:text-green-300 transition">Contact</a>
+          </li>
+          <li>
+            <a href="homepage.html" class="hover:text-green-300 transition">Home</a>
+          </li>
+          <li>
+          </button>
+
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Section -->
+    <main class="flex-1 p-6 md:p-10">
+      <!-- Topbar -->
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800">Dashboard</h2>
+        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
+          Logout
+        </button>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h3 class="text-gray-600 text-sm">Total Sales</h3>
+          <p class="text-2xl font-bold text-green-600 mt-2">₹92,450</p>
+        </div>
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h3 class="text-gray-600 text-sm">Products Listed</h3>
+          <p class="text-2xl font-bold text-blue-500 mt-2">150</p>
+        </div>
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h3 class="text-gray-600 text-sm">Registered Users</h3>
+          <p class="text-2xl font-bold text-purple-500 mt-2">328</p>
+        </div>
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h3 class="text-gray-600 text-sm">New Orders Today</h3>
+          <p class="text-2xl font-bold text-red-500 mt-2">23</p>
+        </div>
+      </div>
+
+      <!-- Notifications and Recent Orders -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+        
+        <!-- Notifications -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">Notifications</h3>
+          <ul class="space-y-3">
+            <li class="text-sm text-gray-700">📦 Order #1046 is out for delivery</li>
+            <li class="text-sm text-gray-700">🛒 3 new users signed up today</li>
+            <li class="text-sm text-gray-700">⚠️ Product stock low: Carrots</li>
+          </ul>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="bg-white p-6 rounded-lg shadow overflow-auto">
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">Recent Orders</h3>
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b text-gray-500">
+                <th class="pb-2">Order ID</th>
+                <th class="pb-2">Customer</th>
+                <th class="pb-2">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b">
+                <td class="py-2">#1045</td>
+                <td class="py-2">Suresh</td>
+                <td class="py-2 text-green-600">Delivered</td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-2">#1046</td>
+                <td class="py-2">Meena</td>
+                <td class="py-2 text-yellow-600">In Progress</td>
+              </tr>
+              <tr>
+                <td class="py-2">#1047</td>
+                <td class="py-2">Anil</td>
+                <td class="py-2 text-red-600">Pending</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Customer Info -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-4 text-gray-800">Customers</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead>
+              <tr class="border-b text-gray-500">
+                <th class="pb-2">Name</th>
+                <th class="pb-2">City</th>
+                <th class="pb-2">Phone</th>
+              </tr>
+            </thead>
+            <tbody><tr class="border-b">
+                <td class="py-2"> Prof.Pradnya Mane</td>
+                <td class="py-2">Wagholi</td>
+                <td class="py-2">9374554540</td>
+              </tr><tr class="border-b">
+                <td class="py-2">Adnya Mane</td>
+                <td class="py-2">Kharadi</td>
+                <td class="py-2">8174523230</td>
+              </tr><tr class="border-b">
+                <td class="py-2">Manjiree Huse</td>
+                <td class="py-2">Kesnand</td>
+                <td class="py-2">6273561230</td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-2">Sandesh Methe</td>
+                <td class="py-2">Alandi </td>
+                <td class="py-2">7896543210</td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-2">Asif Shaikh</td>
+                <td class="py-2">Yerwada</td>
+                <td class="py-2">8974561230</td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-2">Yogesh Nagargoje</td>
+                <td class="py-2">Viman Nagar</td>
+                <td class="py-2">9123456753</td></tr>
+               <tr class="border-b">
+                <td class="py-2">Rohit Gade</td>
+                <td class="py-2"> Kharadi</td>
+                <td class="py-2">9123459445</td></tr>
+                <tr  class="border-b">     
+                  <td class="py-2">Avinash Gawde</td>
+                <td class="py-2">Koregaon</td>
+                <td class="py-2">9123456555</td></tr>
+                <tr class="border-b">
+                  <td class="py-2">Aviraj Patil</td>
+                <td class="py-2">Wagholi</td>
+                <td class="py-2">9123459876</td></tr>
+                <tr class="border-b">
+                  <td class="py-2">Naresh Methe</td>
+                <td class="py-2">Manjari</td>
+                <td class="py-2">9123459453</td></tr>
+                <tr class="border-b">
+                  <td class="py-2">Ajay Sharma</td>
+                <td class="py-2">Lonikand</td>
+                <td class="py-2">9123459864</td></tr>
+               </tr class="border-b">
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
